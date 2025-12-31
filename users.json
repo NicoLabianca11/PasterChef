@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "completed_recipes": [],
+      "created_at": "2026-01-02T18:24:54.628267",
+      "id": "fcac6c3786a64e41b2dd4c3b4e200f40",
+      "last_active": "2026-01-03T09:06:23.416381",
+      "level": 1,
+      "name": "nessuno",
+      "quiz_completed": [
+        1
+      ],
+      "quiz_scores": {
+        "1": 5
+      },
+      "total_xp": 60
+    }
+  ]
+}
