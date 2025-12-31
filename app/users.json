@@ -1,0 +1,37 @@
+{
+  "users": [
+    {
+      "name": "TestChef",
+      "level": 1,
+      "total_xp": 0,
+      "completed_recipes": [],
+      "quiz_completed": [],
+      "quiz_scores": {},
+      "id": "7228898450fa47ee9fae9043d0eb25cb",
+      "created_at": "2026-01-02T19:19:22.335050",
+      "last_active": "2026-01-02T19:19:22.335050"
+    },
+    {
+      "name": "ChefFinale",
+      "level": 1,
+      "total_xp": 0,
+      "completed_recipes": [],
+      "quiz_completed": [],
+      "quiz_scores": {},
+      "id": "7228898450fa47ee9fae9043d0eb25cb",
+      "created_at": "2026-01-02T19:21:39.291463",
+      "last_active": "2026-01-02T19:21:39.291463"
+    },
+    {
+      "name": "TestChef",
+      "level": 1,
+      "total_xp": 0,
+      "completed_recipes": [],
+      "quiz_completed": [],
+      "quiz_scores": {},
+      "id": "5ea779ad1b9440ccae57efd1aad81681",
+      "created_at": "2026-01-02T19:38:57.391614",
+      "last_active": "2026-01-02T19:38:57.391614"
+    }
+  ]
+}
