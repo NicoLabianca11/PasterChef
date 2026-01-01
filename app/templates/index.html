@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="roadmap-scene">
+    <!-- Header -->
+    <header class="game-header">
+        <div class="header-logo">
+            <span class="header-icon">🧁</span>
+            <h1>PasterChef</h1>
+        </div>
+
+        <div class="header-actions" style="display: flex; gap: 10px; align-items: center;">
+            <a href="{{ url_for('leaderboard_view') }}" class="icon-btn" title="Vedi Classifica"
+                style="text-decoration:none; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.3); border-radius:50%; width:40px; height:40px; font-size:1.5rem; transition:transform 0.2s;">🏆</a>
+            <div class="header-badge">
+                <span class="star">⭐</span>
+                <span>{{ badge.name }}</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Kitchen Background with Overlay -->
+    <div class="kitchen-bg"></div>
+    <div class="kitchen-overlay"></div>
+
+    <!-- Main Game Area -->
+    <main class="game-board">
+        <!-- Honey Path - Organic curved path -->
+        <svg class="honey-road" viewBox="0 0 300 1800" preserveAspectRatio="xMidYMin slice">
+            <defs>
+                <!-- Honey/Caramel Gradient -->
+                <linearGradient id="caramelFill" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#b8860b" stop-opacity="0.85" />
+                    <stop offset="25%" stop-color="#daa520" stop-opacity="0.9" />
+                    <stop offset="50%" stop-color="#f0c040" stop-opacity="0.95" />
+                    <stop offset="75%" stop-color="#daa520" stop-opacity="0.9" />
+                    <stop offset="100%" stop-color="#b8860b" stop-opacity="0.85" />
+                </linearGradient>
+
+                <!-- Highlight for glossy effect -->
+                <linearGradient id="honeyShine" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#fffacd" stop-opacity="0.5" />
+                    <stop offset="30%" stop-color="#ffeaa7" stop-opacity="0.2" />
+                    <stop offset="100%" stop-color="#8b6508" stop-opacity="0.4" />
+                </linearGradient>
+
+                <!-- Soft shadow filter -->
+                <filter id="pathShadow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#3d2914" flood-opacity="0.5" />
+                </filter>
+
+                <!-- Soft blur for edges -->
+                <filter id="softPath" x="-10%" y="-10%" width="120%" height="120%">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" />
+                </filter>
+            </defs>
+
+            <!-- Shadow layer -->
+            <path d="M150,50 
+                     Q220,120 180,200 
+                     Q100,300 150,400 
+                     Q220,500 160,600 
+                     Q80,700 150,800 
+                     Q240,900 170,1000 
+                     Q90,1100 150,1200 
+                     Q230,1300 160,1400 
+                     Q80,1500 150,1600 
+                     L150,1800" fill="none" stroke="#3d2914" stroke-width="48" stroke-linecap="round"
+                stroke-linejoin="round" opacity="0.35" transform="translate(4, 8)" />
+
+            <!-- Main caramel path -->
+            <path class="road-main" d="M150,50 
+                     Q220,120 180,200 
+                     Q100,300 150,400 
+                     Q220,500 160,600 
+                     Q80,700 150,800 
+                     Q240,900 170,1000 
+                     Q90,1100 150,1200 
+                     Q230,1300 160,1400 
+                     Q80,1500 150,1600 
+                     L150,1800" fill="none" stroke="url(#caramelFill)" stroke-width="42" stroke-linecap="round"
+                stroke-linejoin="round" filter="url(#pathShadow)" />
+
+            <!-- Glossy highlight -->
+            <path d="M150,50 
+                     Q220,120 180,200 
+                     Q100,300 150,400 
+                     Q220,500 160,600 
+                     Q80,700 150,800 
+                     Q240,900 170,1000 
+                     Q90,1100 150,1200 
+                     Q230,1300 160,1400 
+                     Q80,1500 150,1600 
+                     L150,1800" fill="none" stroke="url(#honeyShine)" stroke-width="28" stroke-linecap="round"
+                stroke-linejoin="round" opacity="0.7" />
+        </svg>
+
+        <!-- Level Nodes -->
+        <div class="levels-track">
+            {% for recipe in recipes %}
+            {% set is_current = (loop.index == user_level) %}
+            {% set is_unlocked = (recipe.status == 'unlocked') %}
+            {% set is_completed = recipe.completed %}
+
+            <article class="level-node 
+                           {% if not is_unlocked %}locked{% endif %}
+                           {% if is_current %}current{% endif %}
+                           {% if is_completed %}done{% endif %}" style="--i: {{ loop.index }};">
+
+                <a href="{% if is_unlocked %}{{ url_for('quiz', recipe_id=recipe.id) }}{% else %}#{% endif %}"
+                    class="level-link" {% if not is_unlocked %}aria-disabled="true" {% endif %}>
+
+                    <!-- Glow effect for current level -->
+                    {% if is_current %}
+                    <div class="golden-pulse"></div>
+                    {% endif %}
+
+                    <!-- Main dessert card -->
+                    <div class="dessert-card">
+                        <!-- Ingredient count badge -->
+                        <span class="ingr-badge">{{ recipe.ingredients_count }}</span>
+
+                        <!-- Dessert icon -->
+                        <div class="dessert-icon">
+                            {% if recipe.id == 1 %}🥐
+                            {% elif recipe.id == 2 %}🧁
+                            {% elif recipe.id == 3 %}🥧
+                            {% elif recipe.id == 4 %}🍰
+                            {% elif recipe.id == 5 %}🍩
+                            {% elif recipe.id == 6 %}🥮
+                            {% elif recipe.id == 7 %}🍮
+                            {% elif recipe.id == 8 %}🍫
+                            {% elif recipe.id == 9 %}🍪
+                            {% elif recipe.id == 10 %}🎂
+                            {% elif recipe.id <= 15 %}🧁 {% elif recipe.id <=20 %}🥧 {% elif recipe.id <=25 %}🍰 {% elif
+                                recipe.id <=30 %}🎂 {% elif recipe.id <=35 %}🍮 {% elif recipe.id <=40 %}🥮 {% elif
+                                recipe.id <=45 %}🍩 {% else %}👨‍🍳 {% endif %} </div>
+
+                                <!-- Completed checkmark -->
+                                {% if is_completed %}
+                                <div class="done-mark">✓</div>
+                                {% endif %}
+                        </div>
+
+                        <!-- Glass label -->
+                        <div class="glass-label">
+                            <span class="level-num">{{ recipe.id }}</span>
+                            <span class="level-title">{{ recipe.name }}</span>
+                        </div>
+                </a>
+            </article>
+            {% endfor %}
+        </div>
+    </main>
+</div>
+
+<!-- Popups -->
+<div id="milestonePopup" class="modal hidden">
+    <div class="modal-box">
+        <h2>🎉 Congratulazioni! 🎉</h2>
+        <div class="modal-icon" id="newBadgeIcon">⭐</div>
+        <h3 id="newBadgeName">Nuovo Rango!</h3>
+        <p id="milestoneMessage">Hai raggiunto un nuovo traguardo!</p>
+        <button onclick="closeMilestonePopup()">Continua</button>
+    </div>
+</div>
+{% endblock %}
