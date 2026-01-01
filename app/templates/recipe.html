@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="recipe-container">
+    <!-- Header -->
+    <header class="recipe-header">
+        <a href="{{ url_for('index') }}" class="back-btn">
+            <span class="back-icon">←</span>
+            <span>Mappa</span>
+        </a>
+        <div class="recipe-title-header">
+            <span class="recipe-level">Livello {{ recipe.id }}</span>
+            <h1>{{ recipe.name }}</h1>
+        </div>
+        <div class="user-badge-small">
+            <span>{{ badge.icon }} {{ badge.name }}</span>
+        </div>
+    </header>
+
+    <!-- Split View -->
+    <div class="split-view">
+        <!-- Left: Recipe Instructions -->
+        <div class="recipe-content">
+            <div class="recipe-meta">
+                <span class="difficulty">
+                    {% for i in range(recipe.difficulty) %}⭐{% endfor %}
+                    {% for i in range(5 - recipe.difficulty) %}☆{% endfor %}
+                </span>
+                <span class="xp-reward">+{{ recipe.xp }} XP</span>
+            </div>
+
+            <!-- Ingredients Section -->
+            <section class="ingredients-section">
+                <h3>🥄 Ingredienti</h3>
+                <ul class="ingredients-list">
+                    {% for ingredient in recipe.ingredients %}
+                    <li>
+                        <label class="ingredient-item">
+                            <input type="checkbox" class="ingredient-check">
+                            <span class="checkmark"></span>
+                            <span class="ingredient-text">{{ ingredient }}</span>
+                        </label>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </section>
+
+            <!-- Steps Section -->
+            <section class="steps-section">
+                <h3>👨‍🍳 Procedimento</h3>
+                <ol class="steps-list">
+                    {% for step in recipe.steps %}
+                    <li>
+                        <div class="step-item">
+                            <span class="step-number">{{ loop.index }}</span>
+                            <p class="step-text">{{ step }}</p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ol>
+            </section>
+
+            <!-- Complete Button -->
+            <div class="complete-section">
+                {% if completed %}
+                <button class="complete-btn completed" disabled>
+                    ✓ Ricetta Completata!
+                </button>
+                {% else %}
+                <button class="complete-btn" id="completeBtn" data-recipe-id="{{ recipe.id }}">
+                    🔥 Completa e Inforna!
+                </button>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Right: Visuals -->
+        <div class="recipe-visuals">
+            <!-- Image Carousel -->
+            <div class="carousel">
+                <div class="carousel-track" id="carouselTrack">
+                    {% for image in recipe.images %}
+                    <div class="carousel-slide">
+                        <img src="{{ image }}" alt="Step {{ loop.index }}" loading="lazy">
+                    </div>
+                    {% endfor %}
+                </div>
+                <button class="carousel-btn prev" id="prevBtn">❮</button>
+                <button class="carousel-btn next" id="nextBtn">❯</button>
+                <div class="carousel-dots">
+                    {% for image in recipe.images %}
+                    <span class="dot {% if loop.index == 1 %}active{% endif %}" data-index="{{ loop.index0 }}"></span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer: Notes & Chat -->
+    <div class="recipe-footer">
+        <!-- Chef Notes -->
+        <div class="notes-area">
+            <h3>📝 Note dello Chef</h3>
+            <textarea id="chefNotes"
+                placeholder="Scrivi qui i tuoi appunti personali, trucchi e segreti per questa ricetta..."
+                data-recipe-id="{{ recipe.id }}">{{ user_notes }}</textarea>
+            <button class="save-notes-btn" id="saveNotesBtn">💾 Salva Note</button>
+        </div>
+
+        <!-- AI Sous-Chef Chat -->
+        <div class="chat-widget">
+            <div class="chat-header">
+                <span>🤖 AI Sous-Chef</span>
+                <button class="toggle-chat" id="toggleChat">−</button>
+            </div>
+            <div class="chat-body" id="chatBody">
+                <div class="message bot">
+                    <span class="bot-avatar">👨‍🍳</span>
+                    <div class="message-content">Ciao Chef! Sono il tuo assistente per "<strong>{{ recipe.name
+                            }}</strong>". Hai bisogno di aiuto con qualche passaggio?</div>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Chiedi aiuto sulla ricetta..."
+                    data-recipe-id="{{ recipe.id }}">
+                <button id="sendChat">Invia</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Completion Popup -->
+<div id="completionPopup" class="popup-overlay hidden">
+    <div class="popup-content completion-popup">
+        <div class="stars-burst">⭐</div>
+        <h2>Ricetta Completata!</h2>
+        <div class="xp-earned">
+            <span class="xp-number">+{{ recipe.xp }}</span>
+            <span class="xp-label">XP</span>
+        </div>
+        <p id="completionMessage">Ottimo lavoro, Chef!</p>
+        <button onclick="closeCompletionPopup()">Continua</button>
+    </div>
+</div>
+
+<!-- Milestone Popup -->
+<div id="milestonePopup" class="popup-overlay hidden">
+    <div class="popup-content milestone-popup">
+        <div class="confetti-container">
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+            <div class="confetti"></div>
+        </div>
+        <h2>🎉 LIVELLO RAGGIUNTO! 🎉</h2>
+        <div class="milestone-badge">
+            <span id="newBadgeIcon">⭐</span>
+        </div>
+        <h3 id="newBadgeName">Nuovo Rango</h3>
+        <p id="milestoneMessage">Sei salito di livello!</p>
+        <button onclick="closeMilestonePopup()">Fantastico!</button>
+    </div>
+</div>
+{% endblock %}
