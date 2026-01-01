@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Benvenuto a PasterChef!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="welcome-container">
+        <div class="welcome-card">
+            <h1>🧁 Benvenuto a PasterChef!</h1>
+            <p>Inserisci il tuo nome da Chef per iniziare l'avventura in pasticceria</p>
+
+            <form method="POST" action="/welcome">
+                <input type="text" name="username" placeholder="Il tuo nome da Chef..." maxlength="20" required
+                    autofocus autocomplete="off">
+                <button type="submit">Inizia l'Avventura 🎂</button>
+            </form>
+
+            <p class="privacy-note">
+                💡 Il tuo nome apparirà nella classifica globale
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
