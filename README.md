@@ -1,6 +1,6 @@
 ## **PasterChef**
 
-![Schermata Principale](Gemini_Generated_Image_h09odmh09odmh09o.png)
+![Logo PasterChef](images/pasticccere.png)
 
 ## 🍰 Cos'è PasterChef?
 PasterChef è una **Web App** innovativa che trasforma l'arte della pasticceria in un gioco. L'obiettivo non è solo fornire ricette, ma renderti un vero Maestro Pasticcere attraverso un percorso di apprendimento basato sulla **gamification**. Impara le tecniche, conosci gli ingredienti e mettiti alla prova divertendoti.
