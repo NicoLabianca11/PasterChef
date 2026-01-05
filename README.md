@@ -83,4 +83,4 @@ Il viaggio di PasterChef è appena iniziato. Ecco le funzionalità pianificate p
 Vuoi scoprire tutti i dettagli del progetto e vedere l'app in azione?
 Scarica la presentazione qui sotto per approfondire l'architettura e guardare la **demo operativa**.
 
-[📥 Scarica la presentazione completa (.pptx)](ProgettoGamification.pptx)
+[📥 Scarica la presentazione completa (.pptx)](./images/ProgettoGamification.pptx)
