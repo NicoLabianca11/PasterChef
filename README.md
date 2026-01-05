@@ -16,11 +16,11 @@ Abbiamo rivoluzionato il modo di imparare a cucinare dolci. Ecco i nostri punti 
 
 ## ⚙️ Requisiti e Installazione
 ### ⚠️ Prerequisiti Software
-Prima di iniziare, assicurati di avere installato:
+
 * **Git:** Per scaricare il progetto.
-* **Java JDK 21:** Necessario per eseguire l'applicazione.
-* **Docker** : Se preferisci avviare tutto tramite container.
-* **IDE Consigliato:** IntelliJ IDEA o Visual Studio Code (per visualizzare/modificare il codice).
+* **Docker Desktop:** (Consigliato) Per avviare tutto senza configurazioni manuali.
+* **Python 3.10+:** (Solo se non usi Docker) Per eseguire il backend manualmente.
+* **Web Browser:** Qualsiasi browser moderno (Chrome, Firefox, Safari) per giocare.
 
 ---
 
