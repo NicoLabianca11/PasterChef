@@ -49,9 +49,4 @@ Il viaggio di PasterChef è appena iniziato. Ecco le funzionalità pianificate p
 * **🍰 Espansione Contenuti:** Aggiunta di nuove "ere" e moduli didattici specifici, come la *Pasticceria Francese* e l'arte della *Cioccolateria*.
 * **🤝 Gilde di Pasticceri:** Funzionalità social che permetterà di creare squadre (Gilde) per collaborare e partecipare a sfide di gruppo contro altre pasticcerie virtuali.
 
----
 
-* ## ℹ️ Ulteriori Informazioni
-Per approfondire i dettagli tecnici, l'architettura e le scelte progettuali, puoi consultare la documentazione completa allegata qui sotto:
-
-📄 Scarica la presentazione PDF del progetto:
