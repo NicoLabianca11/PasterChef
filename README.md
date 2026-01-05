@@ -41,6 +41,32 @@ docker-compose up --build
 
 ---
 
+## 🆘 Problemi all'avvio? (Troubleshooting)
+
+Se l'applicazione non parte o Docker ti dà errori sul file `users.json`, ecco come risolvere in un attimo.
+
+### 🟢 Soluzione Rapida (Consigliata)
+**Fai "Tabula Rasa":**
+1. Vai nella cartella del progetto.
+2. **Cancella** manualmente il file `users.json`.
+3. Riavvia l'app.
+
+*Perché funziona?* Eliminando il file "bloccato", Docker ne creerà uno nuovo e pulito automaticamente all'avvio.
+
+---
+
+### 🟠 Soluzione Avanzata (Per mantenere i dati)
+Se non vuoi cancellare il file perché contiene dati importanti, devi sbloccare i permessi:
+
+* **Su Windows:** Chiudi tutto e riapri Docker/Terminale facendo **Tasto Destro → Esegui come amministratore**.
+* **Su Mac/Linux:** Apri il terminale nella cartella ed esegui questo comando per sbloccare il file:
+
+```bash
+sudo chmod 777 users.json
+```
+---
+
+
 ## 🔮 Sviluppi Futuri (Roadmap)
 Il viaggio di PasterChef è appena iniziato. Ecco le funzionalità pianificate per le prossime versioni:
 
