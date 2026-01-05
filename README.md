@@ -64,6 +64,7 @@ Se non vuoi cancellare il file perché contiene dati importanti, devi sbloccare 
 ```bash
 sudo chmod 777 users.json
 ```
+
 ---
 
 
@@ -75,4 +76,11 @@ Il viaggio di PasterChef è appena iniziato. Ecco le funzionalità pianificate p
 * **🍰 Espansione Contenuti:** Aggiunta di nuove "ere" e moduli didattici specifici, come la *Pasticceria Francese* e l'arte della *Cioccolateria*.
 * **🤝 Gilde di Pasticceri:** Funzionalità social che permetterà di creare squadre (Gilde) per collaborare e partecipare a sfide di gruppo contro altre pasticcerie virtuali.
 
+---
 
+
+## 📘 Documentazione & Demo
+Vuoi scoprire tutti i dettagli del progetto e vedere l'app in azione?
+Scarica la presentazione qui sotto per approfondire l'architettura e guardare la **demo operativa**.
+
+[📥 Scarica la presentazione completa (.pptx)](ProgettoGamification.pptx)
