@@ -34,7 +34,7 @@ Una volta scaricato, entra nella cartella del progetto:
 ```bash
 cd .\PasterChef\.git\
 ```
-Infine questo comando scaricherà le dipendenze, compilerà il progetto e avvierà il server:
+Infine questo comando scaricherà le dipendenze, compilerà il progetto e avvierà il server(c'è bisogno che docker sia già in esecuzione):
 ```bash
 docker-compose up --build
 ```
